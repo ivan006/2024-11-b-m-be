@@ -40,8 +40,8 @@ class User extends OrmApiBaseModel
     {
         return [
             'old_id' => 'nullable',
-            'name' => 'sometimes:required',
-            //'email' => 'sometimes:required',
+            'name' => 'nullable',
+            'email' => 'sometimes:required',
             //'email_verified_at' => 'nullable',
             //'password' => 'sometimes:required',
             //'status' => 'sometimes:required',
@@ -59,7 +59,7 @@ class User extends OrmApiBaseModel
     protected $fillable = [
         'old_id',
         'name',
-        //'email',
+        'email',
         //'email_verified_at',
         //'password',
         //'status',
