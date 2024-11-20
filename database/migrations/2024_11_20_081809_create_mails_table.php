@@ -6,22 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('mails', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('recipient_id'); // References the ID of the recipient user
+            $table->text('email_body'); // Stores the email body
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('recipient_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('mails');
     }
+
 };

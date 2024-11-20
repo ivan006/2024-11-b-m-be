@@ -32,7 +32,7 @@ class User extends OrmApiBaseModel
     public function childRelationships()
     {
         return [
-
+            'mails' => []
         ];
     }
 
@@ -75,7 +75,10 @@ class User extends OrmApiBaseModel
 
 
 
-
+        public function mails(): HasMany
+    {
+        return $this->hasMany(Mail::class, 'recipient_id');
+    }
 
 
 }
