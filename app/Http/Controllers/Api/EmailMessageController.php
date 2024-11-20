@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail as MailFacade;
 
 class EmailMessageController extends Controller
 {
-    protected $itemNameSingular = "Mail";
+    protected $itemNameSingular = "Email Message";
     protected $model;
 
     public function __construct()
@@ -65,16 +65,16 @@ class EmailMessageController extends Controller
 
             // Send the email
 
-            Log::info('$emailDetails');
-            Log::info($emailDetails);
+            //Log::info('$emailDetails');
+            //Log::info($emailDetails);
             MailFacade::to($recipientEmail)->send(new ItemCreatedMail($emailDetails));
 
-            if (count(MailFacade::failures()) > 0) {
-                // Log the failures
-                Log::error('Mail sending failed', MailFacade::failures());
-            } else {
-                //Log::info('Mail sent successfully');
-            }
+            //if (count(MailFacade::failures()) > 0) {
+            //    // Log the failures
+            //    Log::error('Mail sending failed', MailFacade::failures());
+            //} else {
+            //    //Log::info('Mail sent successfully');
+            //}
 
         }
 

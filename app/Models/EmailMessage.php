@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class EmailMessage extends OrmApiBaseModel
 {
-    protected $table = 'mails';
+    protected $table = 'email_messages';
 
     public $timestamps = false;
 
