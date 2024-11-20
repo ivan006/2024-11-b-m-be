@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //Route::apiResource('posts', \App\Http\Controllers\Api\PostController::class);
 
 
-    Route::apiResource('mails', \App\Http\Controllers\Api\MailController::class);
+    Route::apiResource('email-messages', \App\Http\Controllers\Api\EmailMessageController::class);
 
 });
 
@@ -44,5 +44,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('users', [\App\Http\Controllers\Api\UserController::class, 'index'])->name('users.index');
 Route::get('users/{user}', [\App\Http\Controllers\Api\UserController::class, 'show'])->name('users.show');
 
-Route::get('mails', [\App\Http\Controllers\Api\MailController::class, 'index'])->name('mails.index');
-Route::get('mails/{mail}', [\App\Http\Controllers\Api\MailController::class, 'show'])->name('mails.show');
+Route::get('email-messages', [\App\Http\Controllers\Api\EmailMessageController::class, 'index'])->name('email-messages.index');
+Route::get('email-messages/{email_message}', [\App\Http\Controllers\Api\EmailMessageController::class, 'show'])->name('email-messages.show');

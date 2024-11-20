@@ -7,18 +7,18 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use WizwebBe\OrmApi;
 use App\Http\Controllers\Controller;
-use App\Models\Mail;
+use App\Models\EmailMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as MailFacade;
 
-class MailController extends Controller
+class EmailMessageController extends Controller
 {
     protected $itemNameSingular = "Mail";
     protected $model;
 
     public function __construct()
     {
-        $this->model = new Mail();
+        $this->model = new EmailMessage();
     }
 
     /**

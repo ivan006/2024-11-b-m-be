@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Mail extends OrmApiBaseModel
+class EmailMessage extends OrmApiBaseModel
 {
     protected $table = 'mails';
 
@@ -25,14 +25,14 @@ class Mail extends OrmApiBaseModel
     public function spouseRelationships()
     {
         return [
-            
+
         ];
     }
 
     public function childRelationships()
     {
         return [
-            
+
         ];
     }
 
@@ -58,7 +58,7 @@ class Mail extends OrmApiBaseModel
         return $this->belongsTo(User::class, 'recipient_id');
     }
 
-    
 
-    
+
+
 }

@@ -75,9 +75,9 @@ class User extends OrmApiBaseModel
 
 
 
-        public function mails(): HasMany
+        public function email_message(): HasMany
     {
-        return $this->hasMany(Mail::class, 'recipient_id');
+        return $this->hasMany(EmailMessage::class, 'recipient_id');
     }
 
 
