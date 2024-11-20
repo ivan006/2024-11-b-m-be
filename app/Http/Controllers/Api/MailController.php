@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Mail\ItemCreatedMail;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use WizwebBe\OrmApi;
 use App\Http\Controllers\Controller;
 use App\Models\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail as MailFacade;
 
 class MailController extends Controller
 {
@@ -42,12 +44,13 @@ class MailController extends Controller
         );
 
         // Check if the item was created successfully
-        if ($result['code'] === 201) { // Assuming 201 is the success code for creation
+        if ($result['code'] === 201 || $result['code'] === 200) { // Assuming 201 is the success code for creation
             // Retrieve the created item's details
             $createdItem = $result['res'];
+            Log::info('2024-13-06--12-53', ['$payload' =>  [$createdItem]]);
 
             // Get the recipient email from the users table
-            $recipient = User::find($createdItem['recipient_id']);
+            $recipient = User::find($createdItem['data']['recipient_id']);
             if (!$recipient) {
                 return response()->json(['message' => 'Recipient not found'], 404);
             }
@@ -56,19 +59,21 @@ class MailController extends Controller
 
             // Prepare email details
             $emailDetails = [
-                'recipient_name' => $recipient->name,
-                'email_body' => $createdItem['email_body'], // Email body from the payload
+                'recipient_name' => $recipient->first_name,
+                'email_body' => $createdItem['data']['email_body'], // Email body from the payload
             ];
 
             // Send the email
 
-            Mail::to($recipientEmail)->send(new ItemCreatedMail($emailDetails));
+            Log::info('$emailDetails');
+            Log::info($emailDetails);
+            MailFacade::to($recipientEmail)->send(new ItemCreatedMail($emailDetails));
 
-            if (count(Mail::failures()) > 0) {
+            if (count(MailFacade::failures()) > 0) {
                 // Log the failures
-                Log::error('Mail sending failed', Mail::failures());
+                Log::error('Mail sending failed', MailFacade::failures());
             } else {
-                Log::info('Mail sent successfully');
+                //Log::info('Mail sent successfully');
             }
 
         }
