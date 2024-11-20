@@ -31,11 +31,28 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
+        // Store the item as usual
         $result = OrmApi::createItem(
             $request,
             $this->model,
             $this->itemNameSingular
         );
+
+        // Check if the item was created successfully
+        if ($result['code'] === 201) { // Assuming 201 is the success code for creation
+            // Retrieve the created item's details
+            $createdItem = $result['res'];
+
+            // Prepare email details
+            $emailDetails = [
+                'recipient_name' => $request->input('name'),
+                'item_name' => $createdItem['name'] ?? 'Unknown Item', // Replace with your field names
+            ];
+
+            // Send the email
+            Mail::to($request->input('email'))->send(new ItemCreatedMail($emailDetails));
+        }
+
         return response()->json($result['res'], $result['code']);
     }
 

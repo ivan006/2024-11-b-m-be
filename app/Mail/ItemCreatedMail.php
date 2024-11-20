@@ -13,12 +13,14 @@ class ItemCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $itemDetails;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($itemDetails)
     {
-        //
+        $this->itemDetails = $itemDetails;
     }
 
     /**
@@ -27,7 +29,7 @@ class ItemCreatedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Item Created Mail',
+            subject: 'Item Created Successfully',
         );
     }
 
@@ -37,7 +39,8 @@ class ItemCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.item_created', // Path to the email template
+            with: ['itemDetails' => $this->itemDetails] // Pass dynamic data to the view
         );
     }
 
