@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Mail\ItemCreatedMail;
+use App\Models\User;
 use WizwebBe\OrmApi;
 use App\Http\Controllers\Controller;
 use App\Models\Mail;
@@ -29,6 +31,7 @@ class MailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         // Store the item as usual
@@ -43,14 +46,31 @@ class MailController extends Controller
             // Retrieve the created item's details
             $createdItem = $result['res'];
 
+            // Get the recipient email from the users table
+            $recipient = User::find($createdItem['recipient_id']);
+            if (!$recipient) {
+                return response()->json(['message' => 'Recipient not found'], 404);
+            }
+
+            $recipientEmail = $recipient->email;
+
             // Prepare email details
             $emailDetails = [
-                'recipient_name' => $request->input('name'),
-                'item_name' => $createdItem['name'] ?? 'Unknown Item', // Replace with your field names
+                'recipient_name' => $recipient->name,
+                'email_body' => $createdItem['email_body'], // Email body from the payload
             ];
 
             // Send the email
-            Mail::to($request->input('email'))->send(new ItemCreatedMail($emailDetails));
+
+            Mail::to($recipientEmail)->send(new ItemCreatedMail($emailDetails));
+
+            if (count(Mail::failures()) > 0) {
+                // Log the failures
+                Log::error('Mail sending failed', Mail::failures());
+            } else {
+                Log::info('Mail sent successfully');
+            }
+
         }
 
         return response()->json($result['res'], $result['code']);
