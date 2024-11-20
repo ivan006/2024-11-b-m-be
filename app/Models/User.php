@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use WizwebBe\OrmApiBaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends OrmApiBaseModel
 {
@@ -15,6 +18,7 @@ class User extends OrmApiBaseModel
     public function parentRelationships()
     {
         return [
+
         ];
     }
 
@@ -28,6 +32,7 @@ class User extends OrmApiBaseModel
     public function childRelationships()
     {
         return [
+
         ];
     }
 
@@ -42,7 +47,12 @@ class User extends OrmApiBaseModel
             //'status' => 'sometimes:required',
             //'remember_token' => 'nullable',
             'created_at' => 'nullable',
-            'updated_at' => 'nullable'
+            'updated_at' => 'nullable',
+            'company_name' => 'nullable',
+            'first_name' => 'nullable',
+            'last_name' => 'nullable',
+            'mobile_number' => 'nullable',
+            'profile_photo' => 'nullable'
         ];
     }
 
@@ -55,8 +65,16 @@ class User extends OrmApiBaseModel
         //'status',
         //'remember_token',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'company_name',
+        'first_name',
+        'last_name',
+        'mobile_number',
+        'profile_photo'
     ];
+
+
+
 
 
 
