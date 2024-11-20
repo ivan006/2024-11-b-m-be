@@ -1,0 +1,183 @@
+
+# address
+
+# attachment
+
+# audit
+
+# bank
+
+# communication
+
+# contactnumber
+
+# crm
+
+# document
+- documentdetail (Document)
+
+# documentdetail
+
+# domainuser
+
+# dummy
+
+# email
+
+# entity
+- address (Person)
+- audit (Entity)
+- bank (Entity)
+- communication (RelativeID)
+- contactnumber (Person)
+- crm (EntityProduct)
+- document (CreatedBy)
+- documentdetail (CreatedBy)
+- email (Person)
+- entityevent (Instance)
+- entitygood (Entity)
+- entitygoodapproval (ApprovedBy)
+- entitygoodapproval (InvoiceApprovedBy)
+- entitygoodapproval (Entity)
+- entityrelationship (EntityB)
+- good (Sector)
+- productprovider (Entity)
+- queryheader (ClosedBy)
+- relative (Relative)
+- requirementdetail (ChangedBy)
+- servicerequest (ServiceProvider)
+- servicerequestreport (ServiceProvider)
+- systemcode (Entity)
+- systemuser (Entity)
+- transactions (EntityProduct)
+- useraccess (Entity)
+- userrole (FbId)
+
+# entityaudit
+
+# entityevent
+
+# entitygood
+- entitygoodapproval (Period)
+
+# entitygoodapproval
+- entitygood (Invoice)
+
+# entityrelationship
+
+# externalproducers
+
+# failed_jobs
+
+# good
+- entitygood (Good)
+
+# instanceno
+
+# migrations
+
+# object
+- objecttrait (Object)
+- objectvalue (Object)
+
+# objecttrait
+
+# objectvalue
+
+# password_reset_tokens
+
+# passwordhash
+
+# personal_access_tokens
+
+# post_tags
+
+# posts
+
+# productprovider
+
+# query
+
+# queryheader
+- entitygoodapproval (Query)
+
+# relative
+
+# requirement
+- entitygood (WasteClass)
+
+# requirementdetail
+
+# rule
+- ruleaction (Rule)
+- ruleactiondata (Rule)
+- ruleconfig (Rule)
+- ruleentityrole (Rule)
+- userroleaccess (Rule)
+
+# ruleaction
+
+# ruleactiondata
+
+# ruleconfig
+
+# ruleentityrole
+
+# servicerequest
+- servicerequestfrequency (ServiceRequest)
+- servicerequestreport (ServiceRequest)
+
+# servicerequestfrequency
+
+# servicerequestreport
+- externalproducers (ServiceRequestReport)
+- treatmentdetails (ServiceRequestReport)
+
+# systemaction
+- useraccess (SystemAction)
+
+# systemcode
+- address (Country)
+- address (Type)
+- contactnumber (Type)
+- email (Type)
+- servicerequestfrequency (ReportFrequency)
+- transactions (Type)
+- userconfiguration (Language)
+
+# systemconfiguration
+
+# systemlog
+
+# systemuser
+- communication (SentBy)
+- domainuser (SystemUser)
+- entityaudit (SystemUser)
+- passwordhash (SystemUser)
+- servicerequest (CreatedBy)
+- servicerequestreport (CreatedBy)
+- useraccess (SystemUser)
+- userconfiguration (SystemUser)
+- userdevice (SystemUser)
+
+# tags
+
+# transactions
+
+# treatmentdetails
+- servicerequestreport (TreatmentDetails)
+
+# useraccess
+
+# userconfiguration
+
+# userdevice
+
+# userrole
+- useraccess (UserRole)
+
+# userroleaccess
+
+# users
+
+# website_producer_registrations
